@@ -1,10 +1,14 @@
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navbar from "./components/layout/Navbar";
+
 function App() {
   return (
-    <div className="bg-purple-500">
-      <h1 className="text-xl">hello</h1>
-      {/* test daisy ui  */}
-      <button className="btn mb-3">Click</button>
-    </div>
+    <Router>
+      <div className="flex flex-col justify-between h-screen">
+        <Navbar />
+      </div>
+      <main>Content</main>
+    </Router>
   );
 }
 
