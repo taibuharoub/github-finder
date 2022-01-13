@@ -4,6 +4,8 @@ import githubReducer from "./GithubReducer";
 const GithubContext = createContext({
   users: [],
   fetchUsers: () => {},
+  searchUsers: (text) => {},
+  clearUsers: () => {},
   loading: false,
 });
 
@@ -31,12 +33,41 @@ export const GithubProvider = ({ children }) => {
     dispatch({ type: "GET_USERS", payload: data });
   };
 
+  // Get search results
+  const searchUsers = async (text) => {
+    setLoading();
+
+    const params = new URLSearchParams({
+      q: text,
+    });
+
+    // returns an object
+    const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
+
+    // will destructure the items array from the returned object
+    const { items } = await response.json();
+    dispatch({ type: "GET_USERS", payload: items });
+  };
+
+  // clear users
+  const clearUsers = () => dispatch({ type: "CLEAR_USERS" });
+
   // set loading
   const setLoading = () => dispatch({ type: "SET_LOADING" });
 
   return (
     <GithubContext.Provider
-      value={{ users: state.users, loading: state.loading, fetchUsers }}
+      value={{
+        users: state.users,
+        loading: state.loading,
+        fetchUsers,
+        searchUsers,
+        clearUsers,
+      }}
     >
       {children}
     </GithubContext.Provider>
