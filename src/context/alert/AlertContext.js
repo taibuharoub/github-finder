@@ -2,6 +2,7 @@ import { createContext, useReducer } from "react";
 import alertReducer from "./AlertReducer";
 
 const AlertContext = createContext({
+  alert: {},
   setAlert: (msg, type) => {},
 });
 
