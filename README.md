@@ -8,7 +8,7 @@
 > GitHub Finder is react application that uses the Github REST API to 
 > search for users and get their profile data. It uses tailwind css and daisy UI plugin for styling.
 
-<!-- ![App Preview]() -->
+![App Preview](https://firebasestorage.googleapis.com/v0/b/emailsign-70c77.appspot.com/o/github%20search.PNG?alt=media&token=09448a84-e190-41e6-b2ab-ff688c47844c)
 
 ---
 
